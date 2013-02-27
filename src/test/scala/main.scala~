@@ -39,7 +39,7 @@ class GenerateTournamentFeatureSpec extends FeatureSpec with ShouldMatchers with
       Then("the tournament respects the minimum amount of rest of all participants / l tournoi respecte la quantite minimal de repos devant etre accorde a chacun des participants")
       tournament.draw.allMatches.forall { match_ =>
 	match_.contenders.exists(contender => 
-	  (tournament.schedule(tournament.draw.findMatchWithParticipant(contender))._2 - tournament.schedule(match_)._2) >= (defaultRules.minTimeBeetweenMatch + defaultRules.expectedMatch)
+	  (tournament.schedule(tournament.draw.findMatchWithParticipant(contender))._2 - tournament.schedule(match_)._2) >= toHours(defaultRules.minTimeBeetweenMatch + defaultRules.expectedMatch)
 	)
       }
     }
